@@ -14,11 +14,11 @@ class InventarisController extends Controller
         $data = [];
 
         foreach ($users as $user) {
-            $data['user'][] = response()->json($user);
+            $data['user'][] = $user->toArray();
         }
 
         foreach ($inventaris as $item) {
-            $data['inventaris'][] = response()->json($item);
+            $data['inventaris'][] = $item->toArray();
         }
 
         return response()->json([

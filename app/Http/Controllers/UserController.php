@@ -26,7 +26,12 @@ class UserController extends Controller
         $data = $request->validate([
             'name' => 'sometimes|required|string',
             'email' => 'sometimes|required|email|unique:users,email',
+            'password' => 'sometimes|required|string',
         ]);
+
+        if (array_key_exists('password', $data)) {
+            $data['password'] = bcrypt($data['password']);
+        }
 
         $user->update($data);
 
